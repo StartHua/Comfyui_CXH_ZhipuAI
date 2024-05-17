@@ -13,4 +13,4 @@
 
 支持批量生成excel:
 
-![ae7c53259145e6cf0a5ea442ebd915a](https://github.com/StartHua/Comfyui_CXH_ZhipuAI/assets/22284244/a5a9d217-cfe5-4eb2-8a89-c07c9d7e51b7)
+![ae7c53259145e6cf0a5ea442ebd915a](https://github.com/StartHua/Comfyui_CXH_ZhipuAI/assets/22284244/e8da2cd8-19bf-4825-9047-51afbca1b95e)
