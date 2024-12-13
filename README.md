@@ -1,6 +1,8 @@
 # Comfyui_ZhipuAI
 功能：文生文，文生图，图生文（放推），文生视频，图生视频
 
+免费：GLM-4V-Flash 模型
+
 1.安装依赖(注意zhipuai 版本需要最新)
 
 2.apikey填写到apikey.txt 支持多个key轮询部分解决限制 申请地址:https://www.bigmodel.cn/invite?icode=00e53ccPBd3LlcbyEEU8TkjPr3uHog9F4g5tjuOUqno%3D
