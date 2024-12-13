@@ -3,7 +3,7 @@
 
 1.安装依赖(注意zhipuai 版本需要最新)
 
-2.apikey填写到apikey.txt 支持多个key 申请地址:https://www.bigmodel.cn/invite?icode=00e53ccPBd3LlcbyEEU8TkjPr3uHog9F4g5tjuOUqno%3D
+2.apikey填写到apikey.txt 支持多个key轮询部分解决限制 申请地址:https://www.bigmodel.cn/invite?icode=00e53ccPBd3LlcbyEEU8TkjPr3uHog9F4g5tjuOUqno%3D
 
 3.文生文
 
