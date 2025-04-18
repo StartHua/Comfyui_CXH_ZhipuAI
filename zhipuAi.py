@@ -28,7 +28,9 @@ class CXH_ZhiPuAi_TX:
     def gen(self,model,system,prompt):
         if len(self.keys) ==0 :
             print("请注册zhipuAi: https://www.bigmodel.cn/invite?icode=00e53ccPBd3LlcbyEEU8TkjPr3uHog9F4g5tjuOUqno%3D")
-
+        if prompt == None or prompt == "" or prompt == "":
+            prompt = ""
+            return ("",)
         #key
         if self.index >= len(self.keys):
             self.index = 0
