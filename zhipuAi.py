@@ -1,6 +1,6 @@
 from .tool import *
 import time
-
+import base64
 # 文字
 class CXH_ZhiPuAi_TX:
 
@@ -64,6 +64,11 @@ class CXH_ZhiPuAi_Vision:
                 "image": ("IMAGE",),
                 "model": (["glm-4v-flash","glm-4v-plus", "glm-4v"],),
                 "prompt":   ("STRING", {"multiline": True, "default": "请用英文详细描述这张图像，不要使用任何中文。英文输出。"},),
+                "type": (["video","image"],{'default': 'text'}),
+                "video_path": ("STRING", {
+                    "multiline": False,
+                    "default": None
+                }),
             }
         }
 
@@ -73,7 +78,7 @@ class CXH_ZhiPuAi_Vision:
     OUTPUT_NODE = False
     CATEGORY = "CXH"
 
-    def gen(self, image,model,prompt:str):
+    def gen(self, image,model,prompt:str, type:str, video_path=None):
 
         pil_image = tensor2pil(image)
         
@@ -88,26 +93,50 @@ class CXH_ZhiPuAi_Vision:
         apikey = self.keys[self.index]
         client = ZhipuAI(api_key=apikey)
         self.index = self.index + 1
-
+        if type=="image":
+            messages=[
+                    {"role": "user",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": prompt
+                        },
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": image_base64
+                            }
+                        }
+                    ]
+                    },
+                ]
+        if type=="video":
+            if prompt == "":
+                return ("请输入prompt",)
+            with open(video_path, 'rb') as video_file:
+                    video_base = base64.b64encode(video_file.read()).decode('utf-8')
+            messages=[
+            {
+                "role": "user",
+                "content": [
+                {
+                    "type": "video_url",
+                    "video_url": {
+                        "url" : video_base
+                    }
+                },
+                {
+                    "type": "text",
+                    "text": prompt
+                }
+                ]
+            }
+            ]
         response = client.chat.completions.create(
             model=model,  # 填写需要调用的模型名称
-            messages=[
-                {"role": "user",
-                 "content": [
-                     {
-                         "type": "text",
-                         "text": prompt
-                     },
-                     {
-                         "type": "image_url",
-                         "image_url": {
-                             "url": image_base64
-                         }
-                     }
-                 ]
-                 },
-            ],
+            messages=messages
         )
+        
         content = response.choices[0].message.content
         return(content,)
     
